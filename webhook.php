@@ -42,6 +42,7 @@ if($mac_provided == $mac_calculated){
 
                 $headers .= "MIME-Version: 1.0\r\n";
                 $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+                $headers .= 'From: Sales Yipli<sales@playyipli.com>' . "\r\n"; 
                 // send email
                 mail($to, $subject, $message, $headers);
 

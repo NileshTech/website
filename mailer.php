@@ -24,7 +24,7 @@ try {
 
     //Recipients
     $mail->setFrom('sales@playyipli.com', 'Mailer');
-    $mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
+    $mail->addAddress('surajjorwekar@gmail.com', 'Suraj Jorwekar');     // Add a recipient
    
 
     // Attachments

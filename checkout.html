@@ -28,16 +28,272 @@
     <script src="assets/js/angular.min.js"></script>
 </head>
 
-<script>
-    var app = angular.module("myApp", []);
-    app.controller('myController',function($scope){
-      $scope.qty=1 ;
-    });
-</script>
-
 <script type="text/javascript"  src="https://code.jquery.com/jquery-3.3.1.js"
     integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
     crossorigin="anonymous"></script>
+
+<script>
+    var app = angular.module("myApp", []);
+    app.controller('myController',function($scope){
+
+      var planPrices = {
+        family:[1800,3000,4500,6000,9000],
+        kids:[1000,1700,2500,3400],
+        adult:[1200,2000,3000,4000]
+      }
+
+
+      /*var planPrices = {
+        family:[1,1,1,1,1],
+        kids:[1,1,1,1],
+        adult:[1,1,1,1]
+      }
+*/
+
+      var monthType = [1,3,6,12,24]
+      $scope.matPrice = 6000
+      $scope.subscriptionPrice = 0
+
+      $scope.kidsPlanPrice = planPrices.kids[0]
+      $scope.adultPlanPrice = planPrices.adult[0]
+      $scope.familyPlanPrice = planPrices.family[0]
+      $scope.subscriptionPrice = planPrices.family[0]
+
+
+
+
+      $scope.qty=1 ;
+      
+      $scope.planType = "family"
+      $scope.planPackageKids = "0"
+      $scope.planPackageAdult = "0"
+      $scope.planPackageFamily = "0"
+
+
+
+
+      $scope.update = function(type) {
+
+        console.log(monthType[parseInt($scope.planPackageFamily)])
+
+        console.log(planPrices.kids[parseInt($scope.planPackageKids)])
+        if(type == 'kids'){
+          $scope.kidsPlanPrice = planPrices.kids[parseInt($scope.planPackageKids)]
+          $scope.subscriptionPrice =  $scope.kidsPlanPrice
+        }
+
+        if(type == 'adult'){
+          $scope.adultPlanPrice = planPrices.adult[parseInt($scope.planPackageAdult)]
+           $scope.subscriptionPrice =  $scope.adultPlanPrice
+
+        }
+
+        if(type == 'family'){
+          $scope.familyPlanPrice = planPrices.family[parseInt($scope.planPackageFamily)]
+           $scope.subscriptionPrice =  $scope.familyPlanPrice
+        }
+        
+        // $scope.item.size.code = $scope.selectedItem.code
+         // use $scope.selectedItem.code and $scope.selectedItem.name here
+         // for other stuff ...
+      }
+
+
+      $scope.getSubscriptionPrice = function(type) {
+
+        
+        if(type == 'kids'){
+          //$scope.kidsPlanPrice = planPrices.kids[parseInt($scope.planPackageKids)]
+          return $scope.subscriptionPrice =  $scope.kidsPlanPrice
+        }
+
+        if(type == 'adult'){
+          //$scope.adultPlanPrice = planPrices.adult[parseInt($scope.planPackageAdult)]
+           return $scope.subscriptionPrice =  $scope.adultPlanPrice
+
+        }
+
+        if(type == 'family'){
+          //$scope.familyPlanPrice = planPrices.family[parseInt($scope.planPackageFamily)]
+           return $scope.subscriptionPrice =  $scope.familyPlanPrice
+        }
+        
+        // $scope.item.size.code = $scope.selectedItem.code
+         // use $scope.selectedItem.code and $scope.selectedItem.name here
+         // for other stuff ...
+      }
+
+      $scope.parseIntValue = function(value) { 
+        console.log(value)
+        return parseInt(value)
+      };
+
+      $scope.getValue = function(type) { 
+        
+        if(type == 'kids'){
+          //$scope.subscriptionPrice = monthType[parseInt($scope.planPackageKids)]
+          return monthType[parseInt($scope.planPackageKids)]
+        }
+
+        if(type == 'adult'){
+          //$scope.subscriptionPrice = monthType[parseInt($scope.planPackageAdult)]
+          return monthType[parseInt($scope.planPackageAdult)]
+        }
+
+        if(type == 'family'){
+          //$scope.subscriptionPrice = monthType[parseInt($scope.planPackageFamily)]
+          return monthType[parseInt($scope.planPackageFamily)]
+        }
+      };
+
+      $scope.getTotalPrice = function() { 
+
+        var type = $scope.planType  
+        console.log(type)
+        if(type == 'kids')
+          return ($scope.qty * $scope.matPrice) + $scope.kidsPlanPrice
+
+        if(type == 'adult')
+          return ($scope.qty * $scope.matPrice) + $scope.adultPlanPrice
+
+        if(type == 'family')
+          return ($scope.qty * $scope.matPrice) + $scope.familyPlanPrice
+
+        return  ($scope.qty * $scope.matPrice) 
+      };
+
+      
+      $scope.deleteItem = function(itemType) { 
+
+        var type = $scope.planType  
+        console.log(type)
+
+        $subscriptionPrice = 0 
+        if(type == 'kids'){
+          $scope.planType = ""
+        }
+
+        if(type == 'adult'){
+          $scope.planType = ""
+          //$scope.adultPlanPrice = 0;
+        }
+
+        if(type == 'family'){
+          $scope.planType = ""
+         // $scope.familyPlanPrice = 0;
+        }
+
+
+       // $scope.getTotalPrice()
+
+      };
+
+      
+      $scope.getFinalProductType = function() { 
+
+        var type = $scope.planType  
+        //console.log(type)
+
+        $subscriptionPrice = 0 
+        if(type == 'kids'){
+
+          if(parseInt($scope.planPackageKids) == 0)
+            return "Kids-1 Month ubcription"
+
+          if(parseInt($scope.planPackageKids) == 1)
+            return "Kids-3 Month Subcription"
+
+          if(parseInt($scope.planPackageKids) == 2)
+            return "Kids-6 Month Subcription"
+
+          if(parseInt($scope.planPackageKids) == 3)
+            return "Kids-12 Month Subcription"
+
+
+        }
+
+        if(type == 'adult'){
+          if(parseInt($scope.planPackageAdult) == 0)
+            return "Adult-1 Month Subcription"
+
+          if(parseInt($scope.planPackageAdult) == 1)
+            return "Adult-3 Month Subcription"
+
+          if(parseInt($scope.planPackageAdult) == 2)
+            return "Adult-6 Month Subcription"
+
+          if(parseInt($scope.planPackageAdult) == 3)
+            return "Adult-12 Month Subcription"
+
+        }
+
+        if(type == 'family'){
+          if(parseInt($scope.planPackageFamily) == 0)
+            return "Family-1 Month Subcription"
+
+          if(parseInt($scope.planPackageFamily) == 1)
+            return "Family-3 Month Subcription"
+
+          if(parseInt($scope.planPackageFamily) == 2)
+            return "Family-6 Month Subcription"
+
+          if(parseInt($scope.planPackageFamily) == 3)
+            return "Family-12 Month Subcription"
+
+          if(parseInt($scope.planPackageFamily) == 4)
+            return "Family-24 Month Subcription"
+
+        }
+
+        return ""
+
+
+       // $scope.getTotalPrice()
+
+      };
+
+      
+
+
+
+      /*if($scope.planPackageKids){
+        console.log($scope.planPackageKids)
+      }*/
+      //#scope.planPrice = 
+      /*$scope.planPackage = 1*/
+
+      
+      console.log($scope.planType)
+     
+    });
+
+    
+
+
+ 
+    function onKidsChange(deviceValue) {
+      var value = deviceValue.value;  
+      console.log(value);
+      $('#kidsPrice').text('Rs.'+value) 
+    }
+
+    function onAdultChange(deviceValue) {
+      var value = deviceValue.value;  
+      console.log(value);
+      $('#adultPrice').text('Rs.'+value) 
+    }
+
+    function onFamilyChange(deviceValue) {
+      var value = deviceValue.value;  
+      console.log(value);
+      $('#familyPrice').text('Rs.'+value) 
+    }
+
+    
+    
+</script>
+
+
 <script type="text/javascript">
    
   $(function(){
@@ -78,7 +334,7 @@
 
 
               <div class="row">
-                <div class="col-md-4 order-md-2 mb-4">
+                <div class="col-md-4 order-md-2 mb-4 bg-white padding-all-20">
                   <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-muted">Your cart</span>
                     <span class="badge badge-secondary badge-pill">{{qty}}</span>
@@ -88,9 +344,9 @@
                      <li class="list-group-item d-flex justify-content-between lh-condensed">
                       <div>
                       <!--   <h6 class="my-0">Product Price</h6> -->
-                        <h6 class="my-0" ><h4 style="text-align: center;">Book your  <span class="text-muted" style="color: #616ad1 !important">YIPLI</span> mat now and get 6 months subscription <span class="text-muted" style="color: red !important">FREE</span> </h6>
+                      <!--   <h6 class="my-0" ><h4 style="text-align: center;">Book your  <span class="text-muted" style="color: #616ad1 !important">YIPLI</span> mat now and get 6 months subscription <span class="text-muted" style="color: red !important">FREE</span> </h6> -->
 
-                          <small  style="font-size: 90%;" class="text-muted">MAT + Six Months Subscription = Rs.8000</small>
+                          <small  style="font-size: 90%;" class="text-muted">MAT + Six Months Subscription = Rs.{{matPrice}}</small>
                        </h4>
                       </div>
                      
@@ -101,19 +357,70 @@
                     <li class="list-group-item d-flex justify-content-between lh-condensed">
                       <div>
                       <!--   <h6 class="my-0">Product Price</h6> -->
-                        <h6 class="my-0">Booking Price</h6>
-                        <small class="text-muted">Quantity</small>
+                        <h6 class="my-0">Yipli Mat + Games</h6>
+                        <small class="text-muted">Lifetime fitness games</small>
                       </div>
-                      <span class="text-muted">100</span><br>
-                      <span class="text-muted">{{qty}}</span>
+                      <span class="text-muted">{{qty}}</span><br>
+                      <span class="text-muted text-right">Rs.{{matPrice*qty}}</span><br>
+                      <i class="fa fa-check" style="color: #65ab65" aria-hidden="true"></i>
+
 
                     </li>
 
+
+                    <div ng-switch="planType">
+                      <li ng-switch-when="kids" class="list-group-item d-flex justify-content-between lh-condensed">
+                          <div>
+                          <!--   <h6 class="my-0">Product Price</h6> -->
+                            <h6 class="my-0">Kids Coaching</h6>
+                            <small class="text-muted">{{getValue('kids')}} Months Subscription</small>
+                          </div>
+                          <span class="text-muted">1</span><br>
+                          <span class="text-muted text-right">Rs.{{getSubscriptionPrice('kids')}}</span><br>
+                          <span><i ng-click="deleteItem('kids')" style="color: red" class="far fa-trash-alt"></i></span>
+                          
+                      </li>
+
+                      <li ng-switch-when="adult" class="list-group-item d-flex justify-content-between lh-condensed">
+                          <div>
+                          <!--   <h6 class="my-0">Product Price</h6> -->
+                            <h6 class="my-0">Adult Coaching</h6>
+                            <small class="text-muted">{{getValue('adult')}} Months Subscription</small>
+                          </div>
+                          <span class="text-muted">1</span><br>
+                          <span class="text-muted text-right">Rs.{{getSubscriptionPrice('adult')}}</span><br>
+                          <span><i ng-click="deleteItem('adult')" style="color: red" class="far fa-trash-alt"></i></span>
+                          
+                      </li>
+
+                      <li ng-switch-when="family" class="list-group-item d-flex justify-content-between lh-condensed">
+                          <div>
+                          <!--   <h6 class="my-0">Product Price</h6> -->
+                            <h6 class="my-0">Family Coaching</h6>
+                            <small class="text-muted">{{getValue('family')}} Months Subscription</small>
+                          </div>
+                          <span class="text-muted">1</span><br>
+                          <span class="text-muted text-right">Rs.{{getSubscriptionPrice('family')}} </span><br>
+                          <span><i ng-click="deleteItem('family')" style="color: red" class="far fa-trash-alt"></i></span>
+                          
+                      </li>
+
+
+                    </div>
+
+
+                   
                     <li class="list-group-item d-flex justify-content-between">
                       <span>Total (INR)</span>
-                      <strong>Rs. {{qty*100}}</strong>
+                      <strong>Rs. {{getTotalPrice()}}</strong>
                     </li>
                   </ul>
+
+                  <!-- <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button> -->
+                  <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#exampleModal">
+                   Continue to checkout
+                  </button>
+
 
                   <!-- <form class="card p-2">
                     <div class="input-group">
@@ -126,12 +433,143 @@
          -->
 
                 </div>
-                <div class="col-md-8 order-md-1">
-                  <h4 class="mb-3">Billing Details</h4>
+                <div class="col-md-8 order-md-1 bg-grey padding-all-20">
+
+
+                  <h4 class="mb-3">Smart Mat</h4>
+                  <div class="row">
+                    <div class="col-lg-4" style="margin: auto;">
+                      <img src="assets/img/product/mat1.png">
+                      <img src="assets/img/product/mat2.png">
+                    </div>
+                    <div class="col-lg-8">
+                      <div class="page" title="Page 11">
+                        <div class="section">
+                        <div class="layoutArea">
+                        <div class="column">
+                        <p class="fw-six">Smart Mat + lifetime unlimited fitness games</p>
+                        <ol style="line-height: 25px">
+                        <li>Includes pan india free shippin</li>
+                        <li>Eco-Friendly and Non-Toxic Mat Fabric</li>
+                        <li>Size: 180cm x 61cm x 5mm</li>
+                        <li>Real-Time Feedback on workouts</li>
+                        <li>Bluetooth 4.1 and above</li>
+                        <li>Power with Rechargeable Li-On 1500 mAH</li>
+                        <li>4mtr extra long charging cable (included)</li>
+                        </ol>
+                        </div>
+                        </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                  <br><br>
+                  <h4 class="mb-3">Subscription Plan Type</h4>
 
                   <form class="needs-validation" novalidate action="pay.php" method="post">
+
+                     <div class="row">
+
+                      <div class="col-md-12 mb-3 payment-method">
+                        <label for="kids" class="method card">
+                          <div class="radio-input text-center">
+
+                           
+
+
+                            <input id="kids" type="radio" ng-model="planType" value="kids" name="payment">
+                            <span class="padding-sides-10">Kids Coaching</span><br>
+                            <i class="fa fa-child" aria-hidden="true" style="font-size: 50px;color: #5369f0;"></i>
+                           
+                          </div>
+                          <div class="padding-all-20 " style="padding-bottom: 0px !important;"> 
+
+                            <select ng-model="planPackageKids" ng-change="update('kids')" class="custom-select d-block w-100" id="state" >
+                              
+                                <option value="0">1 month subscription</option>
+                                <option value="1">3 month subscription</option>
+                                <option value="2">6 month subscription</option>
+                                <option value="3">12 month subscription</option>
+                            </select>
+                          </div>
+                   
+                          <div class="padding-top-20 padding-bottom-20">
+                            
+                            <span id="kidsPrice">Rs.{{kidsPlanPrice}}</span>
+                          </div>
+                        </label>
+
+                        <label for="adult" class="method card">
+                          <div class="radio-input text-center">
+                            
+                            <input id="adult" type="radio" ng-model="planType" value="adult" name="payment" >
+                             <span class="padding-sides-10">Adult Coaching</span><br>
+                            
+                           <i class="fa fa-male" aria-hidden="true" style="font-size: 50px;color: #5369f0;"></i>
+                            <i class="fa fa-female" aria-hidden="true" style="font-size: 50px;color: #5369f0;"></i>
+                          </div>
+                          <div class="padding-all-20 " style="padding-bottom: 0px !important;"> 
+                            <select ng-model="planPackageAdult"  ng-change="update('adult')" class="custom-select d-block w-100" id="state" >
+                              
+                                <option value="0">1 month subscription</option>
+                                <option value="1">3 month subscription</option>
+                                <option value="2">6 month subscription</option>
+                                <option value="3">12 month subscription</option>
+                            </select>
+                          </div>
+                   
+                           <div class="padding-top-20 padding-bottom-20">
+                            
+                          
+                            <span id="adultPrice">Rs.{{adultPlanPrice}}</span>
+                          </div>
+                        </label>
+
+
+                        <label for="family" class="method card">
+                          <div class="radio-input text-center">
+                            <input id="family" type="radio" ng-model="planType" value="family" name="payment">
+                            <span class="padding-sides-10">Family Coaching</span><br>
+                            <i class="fa fa-users" aria-hidden="true" style="color: #5369f0;font-size: 50px"></i>
+                          </div>
+                          <div class="padding-all-20 " style="padding-bottom: 0px !important;"> 
+
+                            <select ng-model="planPackageFamily" ng-change="update('family')" class="custom-select d-block w-100" id="state"  >
+                              
+                             
+                              <option value="0">1 month subscription</option>
+                                <option value="1">3 month subscription</option>
+                                <option value="2">6 month subscription</option>
+                                <option value="3">12 month subscription</option>
+                              <option value="4">24 month subscription</option>
+                              
+                              
+                            </select>
+                          </div>
+                   
+                           <div class="padding-top-20 padding-bottom-20">
+                            <span id="familyPrice">Rs.{{familyPlanPrice}}</span>
+                          </div>
+                        </label>
+                   
+                        
+
+
+                      </div>
+
+
+
+                    </div>
+
+
                     <!-- firstname  lastname  qty  mobileno -->
+                    <br><br><h4 class="mb-3">Billing Details</h4>
                     <div class="row">
+
+                    <br>
+
                       <!-- firstname -->
                       <div class="col-md-6 mb-3">
                         <label for="firstName">First name</label>
@@ -154,7 +592,7 @@
                       <div class="col-md-6 mb-3">
                           <label for="qty">Quantity</label>
 
-                            <input type="number" class="form-control" id="qty" name="qty" placeholder="0" ng-model="qty" required>
+                            <input type="number" class="form-control" id="qty" min="1" name="qty" placeholder="0" ng-model="qty" required>
 
                         <div class="invalid-feedback">
                           Valid first name is required.
@@ -162,21 +600,6 @@
                       </div>
 
                     </div>
-
-
-
-                   <!--  <div class="mb-3">
-                      <label for="username">Username</label>
-                      <div class="input-group">
-                        <div class="input-group-prepend">
-                          <span class="input-group-text">@</span>
-                        </div>
-                        <input type="text" class="form-control" id="username" placeholder="Username" required>
-                        <div class="invalid-feedback" style="width: 100%;">
-                          Your username is required.
-                        </div>
-                      </div>
-                    </div> -->
 
                     <div class="mb-3">
                       <label for="email">Email <span class="text-muted">
@@ -191,7 +614,7 @@
                     <div class="mb-3">
                       <label for="phone">Mobile No <span class="text-muted">
                       </span></label>
-                      <input type="tel" class="form-control" id="mobileno" name="mobileno" placeholder="Mobile No.">
+                       <input type="tel" class="form-control" id="mobileno" name="mobileno" maxlength="10" placeholder="Mobile No.">
                       <div class="invalid-feedback">
                         Please enter Valid Mobile No.
                       </div>
@@ -275,68 +698,110 @@
                         </div>
                       </div>
                     </div>
-                    <!-- <hr class="mb-4"> -->
-                   <!--  <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="same-address">
-                      <label class="custom-control-label" for="same-address">Shipping address is the same as my billing address</label>
-                    </div>
-                    <div class="custom-control custom-checkbox">
-                      <input type="checkbox" class="custom-control-input" id="save-info">
-                      <label class="custom-control-label" for="save-info">Save this information for next time</label>
-                    </div>
+                  
                     <hr class="mb-4">
+                    
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"         aria-hidden="true">
+                      <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Confirm Your Order</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <span aria-hidden="true">&times;</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                              <div class="row">
+                                <div class="col-lg-12 bg-white padding-all-20">
+                                  <h4 class="d-flex justify-content-between align-items-center mb-3">
+                                    <span class="text-muted">Your cart</span>
+                                    <span class="badge badge-secondary badge-pill">{{qty}}</span>
+                                  </h4>
+                                  <ul class="list-group mb-3">
 
-                    <h4 class="mb-3">Payment</h4>
+                                     <!-- <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                     
+                                        <h6 class="my-0" ><h4 style="text-align: center;">Book your  <span class="text-muted" style="color: #616ad1 !important">YIPLI</span> mat now and get 6 months subscription <span class="text-muted" style="color: red !important">FREE</span> </h6>
 
-                    <div class="d-block my-3">
-                      <div class="custom-control custom-radio">
-                        <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
-                        <label class="custom-control-label" for="credit">Credit card</label>
-                      </div>
-                      <div class="custom-control custom-radio">
-                        <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
-                        <label class="custom-control-label" for="debit">Debit card</label>
-                      </div>
-                      <div class="custom-control custom-radio">
-                        <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
-                        <label class="custom-control-label" for="paypal">Paypal</label>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-6 mb-3">
-                        <label for="cc-name">Name on card</label>
-                        <input type="text" class="form-control" id="cc-name" placeholder="" required>
-                        <small class="text-muted">Full name as displayed on card</small>
-                        <div class="invalid-feedback">
-                          Name on card is required
+                                          <small  style="font-size: 90%;" class="text-muted">MAT + Six Months Subscription = Rs.{{matPrice}}</small>
+                                       </h4>
+                                      </div>
+                                     
+
+                                    </li>
+ -->
+
+                                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                                      <div>
+                                      <!--   <h6 class="my-0">Product Price</h6> -->
+                                        <h6 class="my-0">Yipli Mat + Games</h6>
+                                        <small class="text-muted">Lifetime fitness games</small>
+                                      </div>
+                                      <span class="text-muted">{{qty}}</span><br>
+                                      <span class="text-muted text-right">Rs.{{matPrice*qty}}</span><br>
+
+                                    </li>
+
+
+                                    <div ng-switch="planType">
+                                      <li ng-switch-when="kids" class="list-group-item d-flex justify-content-between lh-condensed">
+                                          <div>
+                                          <!--   <h6 class="my-0">Product Price</h6> -->
+                                            <h6 class="my-0">Kids Coaching</h6>
+                                            <small class="text-muted">{{getValue('kids')}} Months Subscription</small>
+                                          </div>
+                                          <span class="text-muted">1</span><br>
+                                          <span class="text-muted text-right">Rs.{{kidsPlanPrice}}</span><br>
+                                          
+                                      </li>
+
+                                      <li ng-switch-when="adult" class="list-group-item d-flex justify-content-between lh-condensed">
+                                          <div>
+                                          <!--   <h6 class="my-0">Product Price</h6> -->
+                                            <h6 class="my-0">Adult Coaching</h6>
+                                            <small class="text-muted">{{getValue('adult')}} Months Subscription</small>
+                                          </div>
+                                          <span class="text-muted">1</span><br>
+                                          <span class="text-muted text-right">Rs.{{adultPlanPrice}}</span><br>
+                                          
+                                      </li>
+
+                                      <li ng-switch-when="family" class="list-group-item d-flex justify-content-between lh-condensed">
+                                          <div>
+                                          <!--   <h6 class="my-0">Product Price</h6> -->
+                                            <h6 class="my-0">Family Coaching</h6>
+                                            <small class="text-muted">{{getValue('family')}} Months Subscription</small>
+                                          </div>
+                                          <span class="text-muted">1</span><br>
+                                          <span class="text-muted text-right">Rs.{{familyPlanPrice}} </span><br>
+                                          
+                                      </li>
+
+
+                                    </div>
+
+
+                                   
+                                    <li class="list-group-item d-flex justify-content-between">
+                                      <span>Total (INR)</span>
+                                      <strong >Rs.{{getTotalPrice()}}</strong>
+                                      <input type="hidden" value="{{getTotalPrice()}}" id="totalPrice" name="totalPrice" />
+                                      <input type="hidden" value="{{getFinalProductType()}}" id="FinalProductType" name="FinalProductType" />
+
+                                    </li>
+                                  </ul>
+
+                                 
+                                </div>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary btn-lg btn-block" data-dismiss="modal">Close</button>
+                            
+                            <button class="btn btn-success btn-lg btn-block" style="margin-top: 0px !important" type="submit" >Checkout</button>
+                          </div>
                         </div>
                       </div>
-                      <div class="col-md-6 mb-3">
-                        <label for="cc-number">Credit card number</label>
-                        <input type="text" class="form-control" id="cc-number" placeholder="" required>
-                        <div class="invalid-feedback">
-                          Credit card number is required
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-md-3 mb-3">
-                        <label for="cc-expiration">Expiration</label>
-                        <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
-                        <div class="invalid-feedback">
-                          Expiration date required
-                        </div>
-                      </div>
-                      <div class="col-md-3 mb-3">
-                        <label for="cc-expiration">CVV</label>
-                        <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
-                        <div class="invalid-feedback">
-                          Security code required
-                        </div>
-                      </div>
-                    </div> -->
-                    <hr class="mb-4">
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button>
+                    </div>  
                   </form>
                 </div>
 

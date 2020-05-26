@@ -1,7 +1,11 @@
 <?php
-$product_name = "Yipli";
-$name = "Fitmat Smart Solutions";
-$phone = $_POST["mobileno"];
+include 'src/instamojo.php';
+
+
+$product_name = "Yipli SmartMat-"."".$_POST["FinalProductType"];
+$subcriptionProduct = $_POST["FinalProductType"];
+$name = $_POST["firstname"]." ".$_POST["lastname"];
+$phone = "+91".$_POST["mobileno"];
 $email = $_POST["email"];
 $address = $_POST["address"];
 $address2 = $_POST["address2"];
@@ -9,16 +13,22 @@ $zip = $_POST["zip"];
 $firstname = $_POST["firstname"];
 $lastname = $_POST["lastname"];
 $qty = $_POST["qty"];
-$price = $qty * 100;
+$price =  $_POST["totalPrice"];
 
 
-include 'src/instamojo.php';
+
+
+/*
+ echo '<p>'.$product_name.' '.$subcriptionProduct.' '.$phone.' '.$email.' '.$address.' '.$address2.' '.$zip.' '.$firstname.' '.$lastname.' '.$qty.' '.$price.'</p>';*/
+
 
 // --------------------paste private key and auth -----------------------
 
 $api = new Instamojo\Instamojo('9326a9e66973314439cc8a3d22910e7b', '821c33177885793a28ba331af861dd6e','https://www.instamojo.com/api/1.1/');
 
-
+/*
+$api = new Instamojo\Instamojo('test_d55d253d8863880dcd6d9bf4dcd', 'test_69b53826a51744eaf753256859a','https://test.instamojo.com/api/1.1/');
+*/
 try {
     $response = $api->paymentRequestCreate(array(
         "purpose" => $product_name,
@@ -29,8 +39,8 @@ try {
         "send_sms" => true,
         "email" => $email,
         'allow_repeated_payments' => false,
-        "redirect_url" => "http://playyipli.com/thankyou.php",
-        "webhook" => "http://playyipli.com/webhook.php"
+        "redirect_url" => "https://playyipli.com/thankyou.php",
+        "webhook" => "https://playyipli.com/webhook.php"
         ));
     //print_r($response);
 
