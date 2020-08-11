@@ -334,115 +334,19 @@
 
 
               <div class="row">
-                <div class="col-md-4 order-md-2 mb-4 bg-white padding-all-20">
-                  <h4 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-muted">Your cart</span>
-                    <span class="badge badge-secondary badge-pill">{{qty}}</span>
-                  </h4>
-                  <ul class="list-group mb-3">
-
-                     <li class="list-group-item d-flex justify-content-between lh-condensed">
-                      <div>
-                      <!--   <h6 class="my-0">Product Price</h6> -->
-                      <!--   <h6 class="my-0" ><h4 style="text-align: center;">Book your  <span class="text-muted" style="color: #616ad1 !important">YIPLI</span> mat now and get 6 months subscription <span class="text-muted" style="color: red !important">FREE</span> </h6> -->
-
-                          <small  style="font-size: 90%;" class="text-muted">MAT + Six Months Subscription = Rs.{{matPrice}}</small>
-                       </h4>
-                      </div>
-                     
-
-                    </li>
-
-
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                      <div>
-                      <!--   <h6 class="my-0">Product Price</h6> -->
-                        <h6 class="my-0">Yipli Mat + Games</h6>
-                        <small class="text-muted">Lifetime fitness games</small>
-                      </div>
-                      <span class="text-muted">{{qty}}</span><br>
-                      <span class="text-muted text-right">Rs.{{matPrice*qty}}</span><br>
-                      <i class="fa fa-check" style="color: #65ab65" aria-hidden="true"></i>
-
-
-                    </li>
-
-
-                    <div ng-switch="planType">
-                      <li ng-switch-when="kids" class="list-group-item d-flex justify-content-between lh-condensed">
-                          <div>
-                          <!--   <h6 class="my-0">Product Price</h6> -->
-                            <h6 class="my-0">Kids Coaching</h6>
-                            <small class="text-muted">{{getValue('kids')}} Months Subscription</small>
-                          </div>
-                          <span class="text-muted">1</span><br>
-                          <span class="text-muted text-right">Rs.{{getSubscriptionPrice('kids')}}</span><br>
-                          <span><i ng-click="deleteItem('kids')" style="color: red" class="far fa-trash-alt"></i></span>
-                          
-                      </li>
-
-                      <li ng-switch-when="adult" class="list-group-item d-flex justify-content-between lh-condensed">
-                          <div>
-                          <!--   <h6 class="my-0">Product Price</h6> -->
-                            <h6 class="my-0">Adult Coaching</h6>
-                            <small class="text-muted">{{getValue('adult')}} Months Subscription</small>
-                          </div>
-                          <span class="text-muted">1</span><br>
-                          <span class="text-muted text-right">Rs.{{getSubscriptionPrice('adult')}}</span><br>
-                          <span><i ng-click="deleteItem('adult')" style="color: red" class="far fa-trash-alt"></i></span>
-                          
-                      </li>
-
-                      <li ng-switch-when="family" class="list-group-item d-flex justify-content-between lh-condensed">
-                          <div>
-                          <!--   <h6 class="my-0">Product Price</h6> -->
-                            <h6 class="my-0">Family Coaching</h6>
-                            <small class="text-muted">{{getValue('family')}} Months Subscription</small>
-                          </div>
-                          <span class="text-muted">1</span><br>
-                          <span class="text-muted text-right">Rs.{{getSubscriptionPrice('family')}} </span><br>
-                          <span><i ng-click="deleteItem('family')" style="color: red" class="far fa-trash-alt"></i></span>
-                          
-                      </li>
-
-
-                    </div>
-
-
-                   
-                    <li class="list-group-item d-flex justify-content-between">
-                      <span>Total (INR)</span>
-                      <strong>Rs. {{getTotalPrice()}}</strong>
-                    </li>
-                  </ul>
-
-                  <!-- <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button> -->
-                  <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#exampleModal">
-                   Continue to checkout
-                  </button>
-
-
-                  <!-- <form class="card p-2">
-                    <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Promo code">
-                      <div class="input-group-append">
-                        <button type="submit" class="btn btn-secondary">Redeem</button>
-                      </div>
-                    </div>
-                  </form>
-         -->
-
-                </div>
-                <div class="col-md-8 order-md-1 bg-grey padding-all-20">
+               
+                <div class="col-md-12 order-md-1 bg-grey padding-all-20">
 
 
                   <h4 class="mb-3">Smart Mat</h4>
                   <div class="row">
-                    <div class="col-lg-4" style="margin: auto;">
+                    <div class="col-lg-3" >
                       <img src="assets/img/product/mat1.png">
+                    </div>
+                     <div class="col-lg-3" >
                       <img src="assets/img/product/mat2.png">
                     </div>
-                    <div class="col-lg-8">
+                    <div class="col-lg-6">
                       <div class="page" title="Page 11">
                         <div class="section">
                         <div class="layoutArea">
@@ -472,7 +376,7 @@
 
                      <div class="row">
 
-                      <div class="col-md-12 mb-3 payment-method">
+                      <div class="col-md-9 mb-3 payment-method">
                         <label for="kids" class="method card">
                           <div class="radio-input text-center">
 
@@ -805,7 +709,104 @@
                   </form>
                 </div>
 
+
+                   <div class="bg-white padding-all-20">
+                  <h4 class="d-flex justify-content-between align-items-center mb-3">
+                    <span class="text-muted">Your cart</span>
+                    <span class="badge badge-secondary badge-pill">{{qty}}</span>
+                  </h4>
+                  <ul class="list-group mb-3">
+
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                      <div>
+                      <!--   <h6 class="my-0">Product Price</h6> -->
+                        <h6 class="my-0">Yipli Mat + Games</h6>
+                        <small class="text-muted">Lifetime fitness games</small>
+                      </div>
+                      <span class="text-muted">{{qty}}</span><br>
+                      <span class="text-muted text-right">Rs.{{matPrice*qty}}</span><br>
+                      <i class="fa fa-check" style="color: #65ab65" aria-hidden="true"></i>
+
+
+                    </li>
+
+
+                    <div ng-switch="planType">
+                      <li ng-switch-when="kids" class="list-group-item d-flex justify-content-between lh-condensed">
+                          <div>
+                          <!--   <h6 class="my-0">Product Price</h6> -->
+                            <h6 class="my-0">Kids Coaching</h6>
+                            <small class="text-muted">{{getValue('kids')}} Months Subscription</small>
+                          </div>
+                          <span class="text-muted">1</span><br>
+                          <span class="text-muted text-right">Rs.{{getSubscriptionPrice('kids')}}</span><br>
+                          <span><i ng-click="deleteItem('kids')" style="color: red" class="far fa-trash-alt"></i></span>
+                          
+                      </li>
+
+                      <li ng-switch-when="adult" class="list-group-item d-flex justify-content-between lh-condensed">
+                          <div>
+                          <!--   <h6 class="my-0">Product Price</h6> -->
+                            <h6 class="my-0">Adult Coaching</h6>
+                            <small class="text-muted">{{getValue('adult')}} Months Subscription</small>
+                          </div>
+                          <span class="text-muted">1</span><br>
+                          <span class="text-muted text-right">Rs.{{getSubscriptionPrice('adult')}}</span><br>
+                          <span><i ng-click="deleteItem('adult')" style="color: red" class="far fa-trash-alt"></i></span>
+                          
+                      </li>
+
+                      <li ng-switch-when="family" class="list-group-item d-flex justify-content-between lh-condensed">
+                          <div>
+                          <!--   <h6 class="my-0">Product Price</h6> -->
+                            <h6 class="my-0">Family Coaching</h6>
+                            <small class="text-muted">{{getValue('family')}} Months Subscription</small>
+                          </div>
+                          <span class="text-muted">1</span><br>
+                          <span class="text-muted text-right">Rs.{{getSubscriptionPrice('family')}} </span><br>
+                          <span><i ng-click="deleteItem('family')" style="color: red" class="far fa-trash-alt"></i></span>
+                          
+                      </li>
+
+
+                    </div>
+
+
+                   
+                    <li class="list-group-item d-flex justify-content-between">
+                      <span>Total (INR)</span>
+                      <strong>Rs. {{getTotalPrice()}}</strong>
+                    </li>
+                  </ul>
+
+                  <!-- <button class="btn btn-primary btn-lg btn-block" type="submit">Continue to checkout</button> -->
+                  <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal" data-target="#exampleModal">
+                   Continue to checkout
+                  </button>
+
+
+                  <!-- <form class="card p-2">
+                    <div class="input-group">
+                      <input type="text" class="form-control" placeholder="Promo code">
+                      <div class="input-group-append">
+                        <button type="submit" class="btn btn-secondary">Redeem</button>
+                      </div>
+                    </div>
+                  </form>
+         -->
+
+                </div>
+                 
               </div>
+
+
+             <!--    <div class="col-md-4 order-md-2 mb-4 bg-white padding-all-20">
+
+                    //Checkout Div Two
+
+                </div>
+                 -->
+
               </div>
 
               <footer class="my-5 pt-5 text-muted text-center text-small">

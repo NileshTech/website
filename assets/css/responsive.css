@@ -294,6 +294,10 @@
     .amazing-feature-area.style-04 {
         padding-bottom: 85px;
     }
+    .img-coro{
+        min-width: 140% !important;
+        margin-left: -90px;
+    }
 }
 
 /* Tablet Layout wide: 768px. */
@@ -481,6 +485,10 @@
         top: 28%;
         z-index: -1;
     }
+    .img-coro{
+        min-width: 140% !important;
+        margin-left: -90px;
+    }
 }
 
 
@@ -504,11 +512,11 @@
     .single-product-item {
         display: block;
     }
-    .testimonial-area.testimonial-bg{
+    /*.testimonial-area.testimonial-bg{
         background-image: -moz-linear-gradient( 50deg, rgb(112,191,236) 0%, rgb(106,48,255) 99%);
         background-image: -webkit-linear-gradient( 50deg, rgb(112,191,236) 0%, rgb(106,48,255) 99%);
         background-image: -ms-linear-gradient( 50deg, rgb(112,191,236) 0%, rgb(106,48,255) 99%);
-    }
+    }*/
     .blog-details-page-content-area .single-post-details-item .entry-content .title {
         font-size: 26px;
         line-height: 36px;
@@ -527,9 +535,19 @@
         font-size: 40px;
         line-height: 50px;
     }
+    .img-coro{
+        min-width: 140% !important;
+        margin-left: -90px;
+    }
 }
 
 @media only screen and (min-width:415px) and (max-width: 450px){
+
+    .img-coro{
+        min-width: 140% !important;
+        margin-left: -90px;
+    }
+
     .header-area .header-area-inner .title {
         font-size: 45px;
         line-height: 55px;
